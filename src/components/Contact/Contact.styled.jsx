@@ -10,13 +10,14 @@ const StyledContact = styled.div`
 `;
 const Name = styled.p`
   font-size: ${p => p.theme.fontSizes.l}px;
+  margin-bottom: 3px;
 `;
 
 const ContactIcon = styled(FaUserCircle)`
   font-size: ${p => p.theme.fontSizes.xl}px;
   color: #c74936;
   margin-right: ${p => p.theme.space[3]}px;
-  margin-bottom: -5px;
+  margin-bottom: 3px;
 `;
 
 const Dots = styled.div`

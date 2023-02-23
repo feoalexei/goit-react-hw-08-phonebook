@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const AppContainer = styled.div`
   width: 600px;
+  min-height: 630px;
   border: 7px solid #fff;
   border-radius: ${p => p.theme.radii.normal};
   background-color: ${p => p.theme.colors.backgroundGrey};

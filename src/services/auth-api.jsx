@@ -1,26 +1,29 @@
-import axios from 'axios';
+import { publicApi, privateApi } from 'http/http';
 
-const authApi = axios.create({
-  baseURL: 'https://connections-api.herokuapp.com',
-});
-
-// export const token = {
-//   set(accessToken) {
-//     authAxios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-//   },
-//   unSet() {
-//     authAxios.defaults.headers.common.Authorization = '';
-//   },
-// };
+export const authHeader = {
+  set(token) {
+    privateApi.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  clear() {
+    privateApi.defaults.headers.common.Authorization = '';
+  },
+};
 
 export const signUpService = async credentials => {
-  const { data } = await authApi.post('/users/signup', credentials);
-  // token.set(data.token);
+  const { data } = await publicApi.post('/users/signup', credentials);
   return data;
 };
 
-// export const logOutUser = async () => {
-//   const { data } = await authApi.post('/users/logout');
-//   token.unSet();
-//   return data;
-// };
+export const signInService = async credentials => {
+  const { data } = await publicApi.post('/users/login', credentials);
+  return data;
+};
+
+export const refreshUserService = async () => {
+  const { data } = await privateApi.get('/users/current');
+  return data;
+};
+
+export const SignOutService = async () => {
+  return await privateApi.post('/users/logout');
+};
